@@ -1,0 +1,8 @@
+#lang racket
+(prefix-in p: pict)
+
+;(above    (red circle) (bigger circle))
+;(a        r            (b      r))
+;(up-arrow red-sqr duh   (grow   duh))
+(define (red shape)
+  )
