@@ -96,11 +96,25 @@
             ))
 
         (define lang-id
-          (visual-language visual-editor% '()))
+          (visual-language visual-editor%
+                           (list
+                             (list 'identifier 'l pict)
+                             ...)))
         )]))
 
 
 
+
+
+;For the default launcher function.  Move to another file when it gets too long
+
+(define (show-mapping panel m)
+  (new canvas%
+       [parent panel]
+       [paint-callback
+        (lambda (canvas dc)
+          (send dc draw-text   (~a "(" (second m) ") " (first m)) 25 10)
+          (send dc draw-bitmap (pict->bitmap (scale-to-fit (third m) 20 20)) 0 10))]))
 
 (define (launch vis-lang) ;Takes an editor for a visual language
   (define the-editor (new (visual-language-editor vis-lang)))
@@ -112,7 +126,19 @@
                  [width 200]
                  [height 200]))
   
-  (define input-canvas (new editor-canvas% [parent f]))
+  (define top-panel (new horizontal-panel%
+                     [parent f]
+                     [alignment '(center center)]))
+
+  (define top-left-panel (new vertical-panel%
+                              [parent top-panel]
+                              [alignment '(center center)]))
+
+
+  (for ([m (in-list (visual-language-mappings vis-lang))])
+    (show-mapping top-left-panel m))
+  
+  (define input-canvas (new editor-canvas% [parent top-panel]))
   (send input-canvas set-editor the-editor)
 
   (define output-editor (new output-editor%))

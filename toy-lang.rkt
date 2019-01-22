@@ -46,14 +46,14 @@
   (define (rotate s)
     (p:rotate s (/ 3.14 4)))
 
-  (define (above s1 s2)
-    (p:vc-append s1 s2))
+  (define (above . ss)
+    (apply p:vc-append (reverse ss)))
 
-  (define (beside s1 s2)
-    (p:hc-append s1 s2))
+  (define (beside . ss)
+    (apply p:hc-append (reverse ss)))
 
-  (define (overlay s1 s2)
-    (p:cc-superimpose s1 s2))
+  (define (overlay . ss)
+    (apply p:cc-superimpose (reverse ss)))
 
   (define (red s)
     (p:colorize s "red"))
@@ -114,7 +114,7 @@
 
 
 ;UGH, why can't we share identifiers.  Fix module setup...
-(define-visual-language sound-lang-1
+#;(define-visual-language sound-lang-1
   rsound
   [play      y (p:text "PLAY")]
   [rs-append x (p:text "APPEND")]
