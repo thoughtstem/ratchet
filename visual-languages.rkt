@@ -16,7 +16,7 @@
 (define-syntax (define-visual-language stx)
   (syntax-case stx ()
     [(define-visual-language lang-id module-path [identifier l pict] ...)
-     #'(begin
+     #'(module+ lang-id
          
         (require (rename-in module-path
                             [identifier l]

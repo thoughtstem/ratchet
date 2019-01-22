@@ -1,0 +1,18 @@
+
+Make sure our languages can support (define ...)
+
+Use pasteboard% for legend, not canvases
+
+Better moduling:
+  (supporting languages defined in the same file)
+
+Sound language demo
+
+Be able to control how the code evals (e.g. to
+  wrap in a top-level function/macro)
+
+Be able to embed source code for visual langs
+  in scribble
+
+Be able to easily print tangible interface 
+  components (keyboard overlay, cards/tiles)

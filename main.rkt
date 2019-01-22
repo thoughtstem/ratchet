@@ -1,9 +1,10 @@
 #lang racket
 
-(require "./toy-lang.rkt")
+(require (submod "./toy-lang.rkt" toy-lang-1))
 
 (launch
- sound-lang-1
- #;toy-lang-0)
+ toy-lang-1)
 
+
+;Aww.  No farts yet.  Figure out wav format
 #;(rs-read "./fart.wav") 

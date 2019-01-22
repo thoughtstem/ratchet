@@ -75,7 +75,7 @@
          )
 
 (define-visual-language toy-lang-0
-  'adults
+  (submod ".." adults)
   [square  s (p:filled-rectangle 10 10)]
   [bigger  b (p:bitmap "./images/bigger.png")]
   [rotate  r (p:bitmap "./images/rotate.png")]
@@ -90,7 +90,7 @@
                               #:color "blue")])
 
 (define-visual-language toy-lang-1
-  'adults
+  (submod ".." adults)
   [circle  c (p:filled-ellipse 10 10)]
   [square  s (p:filled-rectangle 10 10)]
   [bigger  b (p:bitmap "./images/bigger.png")]
@@ -116,9 +116,9 @@
 ;UGH, why can't we share identifiers.  Fix module setup...
 (define-visual-language sound-lang-1
   rsound
-  [play      y (p:text "PLAY")]
-  [rs-append x (p:text "APPEND")]
-  [ding      z (p:text "DING")]
+  [play      p (p:text "PLAY")]
+  [rs-append a (p:text "APPEND")]
+  [ding      d (p:text "DING")]
   ;[crash-cymbal q (p:text "SYMBOL")]
   )
 
