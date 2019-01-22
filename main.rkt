@@ -2,5 +2,7 @@
 
 (require "./toy-lang.rkt")
 
-(launch toy-lang-0)
+(launch
+ sound-lang-1
+ #;toy-lang-0)
 

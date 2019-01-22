@@ -112,6 +112,16 @@
   [jack-o-lantern j (p:jack-o-lantern 10)]
   [random-dude    q (p:text "?")])
 
+
+;UGH, why can't we share identifiers.  Fix module setup...
+(define-visual-language sound-lang-1
+  rsound
+  [play      y (p:text "PLAY")]
+  [rs-append x (p:text "APPEND")]
+  [ding      z (p:text "DING")]
+  ;[crash-cymbal q (p:text "SYMBOL")]
+  )
+
 ;Anyone who imports this can do (launch basic-lang)
 
 
