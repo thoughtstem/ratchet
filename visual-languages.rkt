@@ -116,6 +116,11 @@
 ;For the default launcher function.  Move to another file when it gets too long
 
 (define (show-mapping panel m)
+  ;Consider putting m (an image snip) onto "panel" (a pasteboard%).
+  ;  Better than canvases on panels, right?
+  ;Maybe, but can the snip contain the label?  Snips within snips?
+  ;  Nah... Going to need some way of associating snips with each other on the pasteboard.
+  
   (new canvas%
        [parent panel]
        [paint-callback

@@ -1,18 +1,42 @@
 
-Make sure our languages can support (define ...)
 
 Use pasteboard% for legend, not canvases
-
-Better moduling:
-  (supporting languages defined in the same file)
-
-Sound language demo
+  Make it hideable.  Hidden by default.
 
 Be able to control how the code evals (e.g. to
   wrap in a top-level function/macro)
 
 Be able to embed source code for visual langs
   in scribble
+  Can we define a syntax with those embedded icons?  
+    Need Cut-and-paste from visual editor to test
 
 Be able to easily print tangible interface 
   components (keyboard overlay, cards/tiles)
+
+
+== Ideas ==
+
+Memorizing a gigantic volume of grandmaster chess games...
+  Would that make someone a grandmaster?
+  How long does it take to memorize a game?
+
+Racket interface to a chess engine
+  Configure its various parameters,
+  construct a high level algorithm
+  Pit algorithms against each other...
+  Construct training programs for yourself
+
+Racket flashcards...
+  Can code your own education...
+  Test out different learning algorithms...
+  Leverage SRS system as a tool... not as the overarching algorithm...
+
+End User Programming requires coding eduction.
+  You can't have one without the other.  Skip a lanuage / Teach a language.
+
+Why not use an actual #lang ___ ?
+  Want keyboard shortcuts though.
+  Still maybe it's worth considering having Racket be able to run 
+     cut-and-pasted programs natively in the usual editor.
+  Seems like the #lang reader could easily strip out the bitmaps and replace with letters before running it.  Could easily prototype a #lang that does this.
