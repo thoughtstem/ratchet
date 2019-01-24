@@ -1,15 +1,11 @@
-
-
-Use pasteboard% for legend, not canvases
-  Make it hideable.  Hidden by default.
-
-Be able to control how the code evals (e.g. to
-  wrap in a top-level function/macro)
-
 Be able to embed source code for visual langs
   in scribble
   Can we define a syntax with those embedded icons?  
     Need Cut-and-paste from visual editor to test
+
+Be able to control how the code evals (e.g. to
+  wrap in a top-level function/macro)
+
 
 Be able to easily print tangible interface 
   components (keyboard overlay, cards/tiles)
