@@ -30,6 +30,12 @@
   (send legend lock #t)
   
   (define the-editor (new (visual-language-editor vis-lang)))
+  (define mb (new menu-bar% [parent parent]))
+  (define m-edit (new menu% [label "Edit"] [parent mb]))
+  (define m-font (new menu% [label "Font"] [parent mb]))
+  (append-editor-operation-menu-items m-edit #f)
+  (append-editor-font-menu-items m-font)
+  (send the-editor set-max-undo-history 100)
 
   (define input-canvas
     (new editor-canvas%
