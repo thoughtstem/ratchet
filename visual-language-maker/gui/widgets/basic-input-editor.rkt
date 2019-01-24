@@ -11,23 +11,23 @@
                          [alignment '(center center)]
                          [stretchable-width #t]))
 
-  (define output-canvas
+  (define legend-canvas
     (new editor-canvas%
          [parent top-panel]
          [min-width 250]
          [stretchable-width #t]))
   
-  (define output-editor  (new pasteboard%))
+  (define legend  (new pasteboard%))
   
-  (send output-canvas set-editor output-editor)
+  (send legend-canvas set-editor legend)
 
   (define mappings (visual-language-mappings vis-lang))
 
   (for ([m mappings]
         [i (range (length mappings))])
-    (show-mapping output-editor m i))
+    (show-mapping legend m i))
 
-  (send output-editor lock #t)
+  (send legend lock #t)
   
   (define the-editor (new (visual-language-editor vis-lang)))
 
