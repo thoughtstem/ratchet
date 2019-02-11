@@ -1,21 +1,9 @@
-== MVP ==
-
-
 Be able to embed source code for visual langs
   in scribble
-  -- So we can define katas / train teachers...
-  -- Actually, use main language (above circle (bigger circle)) to doc,
-     but use the language's mappings to render as both:
-       -- letter lang (a c (b c)) [intermediary representation]
-       -- And picture lang [ultimate representation]
 
 
-Docs for this tech:
-  (define-visual-language ...)
-  (launch ...)
-  (tangeable-tiles ...)
-  struct visual-language...
-
+Be able to easily print tangible interface 
+  components (keyboard overlay, cards/tiles)
 
 == Probably need eventually ==
 
@@ -23,19 +11,6 @@ Be able to control how the code evals (e.g. to
   wrap in a top-level function/macro)
 
 == Random Ideas ==
-
-More "little langs" for art:
-  Custom cats
-  Custom NPCs
-  Etc...
-
-Easy money: Write a paper about this tech...
-  -- Nice ICFP or CHI paper
-     -- Need good experiement.  Scratch vs Ratchet
-     -- Can use Noun Project as the "here's why people couldn't do it before". 
-       -- (Can also get Noun Project to reference the published article...)
-  -- Leverage that into some pop sci articles...
-  -- Leverage that into book sales...
 
 Memorizing a gigantic volume of grandmaster chess games...
   Would that make someone a grandmaster?

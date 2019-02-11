@@ -1,0 +1,11 @@
+#lang racket
+
+(require "../languages/toy-lang.rkt"
+         #;"./languages/sound-lang.rkt")
+
+
+
+(tangeable-tiles toy-lang-1)
+
+
+;(launch toy-lang-1)

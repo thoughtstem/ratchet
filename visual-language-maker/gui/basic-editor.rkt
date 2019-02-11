@@ -4,7 +4,8 @@
 
 ;Basically provides a
 (provide define-visual-language
-         (struct-out visual-language))
+         (struct-out visual-language)
+         (struct-out identifier-mapping))
 
 (define (fileify key bm)
   (define f (make-temporary-file (~a "~a-" key ".png")))
@@ -12,6 +13,7 @@
   f)
 
 (struct visual-language (editor mappings))
+(struct identifier-mapping (main letter picture))
 
 (define-syntax (define-visual-language stx)
   (syntax-case stx ()
@@ -105,5 +107,5 @@
          (define lang-id
            (visual-language visual-editor%
                             (list
-                             (list 'identifier 'l pict)
+                             (identifier-mapping 'identifier 'l pict)
                              ...))))]))
