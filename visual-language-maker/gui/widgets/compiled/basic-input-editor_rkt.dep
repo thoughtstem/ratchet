@@ -1,0 +1,1 @@
+("7.0" ("a10148251017d7ac742e201a5470063972b1842e" . "94c66d2ca127c36434c38e9844003e434598937e") #"/home/thoughtstem/ratchet/visual-language-maker/gui/widgets/../basic-editor.rkt" (collects #"framework" #"main.rkt") (collects #"pict" #"main.rkt") (collects #"racket" #"gui.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))

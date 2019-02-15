@@ -8,7 +8,7 @@
 
 ;FOR STUDENTS:
 ;Write with it
-;(launch toy-lang-1)
+(launch toy-lang-1)
 
 
 ;FOR TEACHERS:

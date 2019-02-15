@@ -57,14 +57,14 @@
 
   (define is (new image-snip%))
   (send is set-bitmap
-        (pict->bitmap (scale-to-fit (third m) 20 20)))
+        (pict->bitmap (scale-to-fit (identifier-mapping-picture m) 20 20)))
   
   (send panel insert
         is
         0 (* 20 mi))
 
   (send panel insert
-        (make-object string-snip% (~a "(" (second m) ") " (first m)))
+        (make-object string-snip% (~a "(" (identifier-mapping-letter m) ") " (identifier-mapping-main m)))
         40 (* 20 mi))
   )
 
