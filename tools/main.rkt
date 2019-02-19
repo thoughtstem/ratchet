@@ -54,7 +54,7 @@
                             (first (string-split s "\n"))
                             "#lang " "")))
       
-      (define editor (dynamic-require `(submod ,lang-line editor) 'editor)) ;Hmmm
+      (define editor (dynamic-require `(submod ,lang-line ratchet) 'vis-lang)) 
 
       (define launch (dynamic-require 'ratchet/launch 'launch))
 

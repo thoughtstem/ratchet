@@ -14,7 +14,9 @@
   (syntax-case stx ()
     [(define-visual-language lang-id module-path [identifier l pict] ...)
      #'(begin
-         (provide lang-id
+         (provide (all-from-out ratchet)
+                  (rename-out [lang-id vis-lang])
+                  lang-id
                   identifier ...)
 
          (require module-path)
@@ -26,4 +28,5 @@
            (visual-language ns
                             (list
                               (identifier-mapping 'identifier 'l (scale-to-fit pict 20 20))
-                              ...))))]))
+                              ...)))
+)]))
