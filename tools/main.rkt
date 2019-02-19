@@ -56,7 +56,7 @@
       
       (define editor (dynamic-require `(submod ,lang-line editor) 'editor)) ;Hmmm
 
-      (define launch (dynamic-require 'ratchet 'launch))
+      (define launch (dynamic-require 'ratchet/launch 'launch))
 
       (launch editor)
       )

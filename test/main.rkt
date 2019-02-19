@@ -8,6 +8,7 @@
 
 ;FOR STUDENTS:
 ;Write with it
+(require ratchet/launch)
 (launch toy-lang-1)
 
 
