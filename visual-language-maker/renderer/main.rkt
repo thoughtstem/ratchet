@@ -6,7 +6,7 @@
          pict
          (prefix-in p: pict/code)
          "../tangeables/main.rkt"
-         "../gui/basic-editor.rkt")
+         "../base.rkt")
 
 
 

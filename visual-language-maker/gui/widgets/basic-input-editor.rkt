@@ -3,7 +3,7 @@
 (provide basic-input-editor)
 
 (require racket/gui framework pict
-         "../basic-editor.rkt")
+         "../../base.rkt")
 
 (define (basic-input-editor parent vis-lang)
   (define top-panel (new horizontal-panel%
@@ -65,7 +65,91 @@
 
   (send panel insert
         (make-object string-snip% (~a "(" (identifier-mapping-letter m) ") " (identifier-mapping-main m)))
-        40 (* 20 mi))
-  )
+        40 (* 20 mi)))
+
+
+(require pict/snip)
+(define (visual-language-editor vis-lang)
+  (define mappings (visual-language-mappings vis-lang))
+  
+  (define picts (map identifier-mapping-picture mappings))
+
+  ;DON"T HARD CODE THIS BIT>>>>
+  ;(dynamic-require 'k2/lang/ocean/fish #f)
+  (define ns
+    (visual-language-ns vis-lang)
+    #;(module->namespace 'k2/lang/ocean/fish))
+    
+  (define visual-editor%
+    (class racket:text%
+      (super-new)
+            
+      (define/override (on-char ke)
+        (define ke-l (~a (send ke get-key-code)))
+
+        (define mapping
+          (findf (λ(m)
+                   (string=? (~a (identifier-mapping-letter m))
+                             ke-l))
+                 mappings))
+
+        (if mapping
+            (send this insert
+                  (new pict-snip%
+                       [pict (identifier-mapping-picture mapping)]))
+            (super on-char ke)))
+
+      (define/public (get-snips (current (send this find-first-snip))
+                                (ret '()))
+        (if (not current)
+            (reverse ret)
+            (send this get-snips
+                  (send current next)
+                  (cons current ret))))
+
+      (define/public (get-code)
+ 
+        (define (snip->string s)
+          (cond [(is-a? s pict-snip%)   (pict->letter vis-lang
+                                          (send s get-pict))]
+                [(is-a? s string-snip%)  (send s get-text
+                                               0
+                                               (send s get-count))]
+                [else (error (~a "What's that? " s))]))
+              
+        (define snips (send this get-snips))
+        (apply ~a
+               (map snip->string snips)))
+
+      (define/public (run-code)
+        (define code
+          (~a "(begin "
+              (send this get-code)
+              ")"))
+
+      ;  (displayln code)
+        
+        (eval
+         (read
+          (open-input-string code))
+         ns))))
+
+  visual-editor%)
+
+(define (pict->letter vis-lang pict)
+  (define mappings (visual-language-mappings vis-lang))
+
+  (define mapping
+    (findf
+     (λ(m)
+       (equal?
+        (identifier-mapping-picture m)
+        pict))
+     mappings))
+
+  (and mapping
+       (identifier-mapping-main mapping)))
+
+
 
 

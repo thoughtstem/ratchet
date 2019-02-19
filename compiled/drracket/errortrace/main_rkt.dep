@@ -1,0 +1,1 @@
+("7.0" ("93ad7fbf1b7eab4c2f84018babe3199175b895d4" . "3fd75d8c2052115bbee89e59d055709a603130db") (collects #"errortrace" #"errortrace-key.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (collects #"ratchet" #"visual-language-maker" #"main.rkt"))

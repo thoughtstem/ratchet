@@ -3,10 +3,8 @@
 (provide launch)
 
 (require racket/gui framework pict
-         "../basic-editor.rkt"
+         "../../base.rkt"
          "./basic-input-editor.rkt")
-
-
 
 (define (launch vis-lang) 
 

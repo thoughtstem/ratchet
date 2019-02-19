@@ -21,7 +21,7 @@
 ;  but display in the visual form
 (typeset-code toy-lang-1
               (rotate
-                    (above (green circle)
-                           (red circle)
-                           (blue circle))))
+               (above (green circle)
+                      (red circle)
+                      (blue circle))))
 

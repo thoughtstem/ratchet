@@ -3,7 +3,7 @@
 (provide tangeable-tiles)
 
 (require pict
-         "../gui/basic-editor.rkt")
+         "../base.rkt")
 
 
 

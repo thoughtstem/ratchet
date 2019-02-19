@@ -1,1 +1,0 @@
-("7.0" ("294fc0d0b07d4f7048e560b62e3a80f21b5e41c6" . "7af2cdb5a455921c28b2204cd2f3b509119ac7d9") #"/home/thoughtstem/ratchet/test/../languages/toy-lang.rkt" (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))
