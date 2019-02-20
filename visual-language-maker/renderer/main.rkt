@@ -40,12 +40,12 @@
 (define (convert-syntax-string lang str)
   ;At least hide this crap in Ratchet...
   (define stx
-    (second
+    (rest
      (syntax-e
       ((curryr list-ref 3)
        (syntax-e (read-lang-module (open-input-string str)))))))
   
-  (convert-syntax lang stx))
+   (map (curry convert-syntax lang) stx))
 
 (define (syntax->pict lang stx)
   (define mappings (visual-language-mappings lang))
@@ -54,20 +54,25 @@
                               (syntax->datum stx)))
                    mappings))
 
-   (define bm
-     (pict->bitmap
-       (scale-to-fit
-         (identifier-mapping-picture m)
-         200 200)))
+   (if m
+       (let [(bm
+	       (pict->bitmap
+	         (scale-to-fit
+		   (identifier-mapping-picture m)
+		   200 200)))]
 
-   (scale-to-fit (bitmap bm) 20 20)
-  )
+	   (scale-to-fit (bitmap bm) 20 20))
+       stx
+   ))
 
 
 (define (render converted-stx)
-  ((curryr scale 2)
-   (p:typeset-code
-     (datum->syntax converted-stx converted-stx))))
+  (if (list? converted-stx)
+      (apply (curry vl-append 20) (map render converted-stx))
+      ((curryr scale 2)
+        (p:typeset-code
+        (datum->syntax converted-stx converted-stx))))
+)
 
 
 
