@@ -44,7 +44,11 @@
          (define result
            (send input-editor run-code))
          (cond
-           [(pict? result)
+           ;Ugh.  Why is this so hard to generalize?
+           ;  TODO: Post on the racket mailing list and ask how the interactiosn
+           ;    window works.  We should be able to pipe arbitrary values into
+           ;    a text% editor.  But I can't figure out how yet.
+           [(pict? (sanitize result))
             (send output-editor
                   do-edit-operation
                   'select-all)
@@ -54,7 +58,44 @@
                   insert-image
                   (let ()
                     (define f (make-temporary-file))
-                    (define bm (pict->bitmap result))
+                    (define bm (pict->bitmap (sanitize result)))
                     (send bm save-file f 'png)
                     f))]
-           [else (displayln result)]))]))
+           [else (send-to-editor output-editor (sanitize result))]))]))
+
+(require (only-in 2htdp/image image?))
+(define (sanitize r)
+  (cond [(list? r)  (map sanitize r)]
+        [(image? r) (bitmap r)] ;Convert 2htdp/image to pict.  More straightforward to insert into editors...
+        [else r]))
+
+(require wxme)
+(define (send-to-editor e r)
+  (send e
+        do-edit-operation
+        'select-all)
+  (send e
+        clear)
+  
+  
+  (displayln "Sending to editor")
+
+  (define-values (ip op)
+    (make-pipe))
+
+  (print r op)
+
+  (close-output-port op)
+  (send e insert-port ip)
+
+  
+  )
+
+
+
+#;(module+ test
+  (require (submod k2/lang/hero/basic ratchet))
+
+  (launch vis-lang))
+
+
