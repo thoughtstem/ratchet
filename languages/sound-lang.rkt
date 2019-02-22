@@ -1,4 +1,6 @@
 #lang racket
+
+#;(
 (require "../visual-languages.rkt"
          rsound
          (prefix-in p: pict))
@@ -21,3 +23,4 @@
   [rs-append a (p:text "APPEND")]
   [ding      d (p:text "DING")]
   [fart      f (p:text "FART")])
+)
