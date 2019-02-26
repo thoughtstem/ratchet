@@ -123,7 +123,7 @@
 
       (define/public (run-code)
         (define code
-          (~a "(begin "
+          (~a "(" (visual-language-wrapper vis-lang)  " "
               (send this get-code)
               ")"))
 
