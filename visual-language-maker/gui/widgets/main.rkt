@@ -36,32 +36,43 @@
 
 
 (define (run-code-button parent input-editor output-editor)
-  (new button%
+  (define b
+    (new button%
        [parent parent]
        [label "RUN"]
        [callback
         (thunk*
-         (define result
-           (send input-editor run-code))
-         (cond
-           ;Ugh.  Why is this so hard to generalize?
-           ;  TODO: Post on the racket mailing list and ask how the interactiosn
-           ;    window works.  We should be able to pipe arbitrary values into
-           ;    a text% editor.  But I can't figure out how yet.
-           [(pict? (sanitize result))
-            (send output-editor
-                  do-edit-operation
-                  'select-all)
-            (send output-editor
-                  clear)
-            (send output-editor
-                  insert-image
-                  (let ()
-                    (define f (make-temporary-file))
-                    (define bm (pict->bitmap (sanitize result)))
-                    (send bm save-file f 'png)
-                    f))]
-           [else (send-to-editor output-editor (sanitize result))]))]))
+         (send b enable #f)
+
+         (with-handlers ([exn:fail? (thunk* 
+                                      (send b enable #t))])
+                        (define result
+                          (send input-editor run-code))
+                        (cond
+                          ;Ugh.  Why is this so hard to generalize?
+                          ;  TODO: Post on the racket mailing list and ask how the interactiosn
+                          ;    window works.  We should be able to pipe arbitrary values into
+                          ;    a text% editor.  But I can't figure out how yet.
+                          [(pict? (sanitize result))
+                           (send output-editor
+                                 do-edit-operation
+                                 'select-all)
+                           (send output-editor
+                                 clear)
+                           (send output-editor
+                                 insert-image
+                                 (let ()
+                                   (define f (make-temporary-file))
+                                   (define bm (pict->bitmap (sanitize result)))
+                                   (send bm save-file f 'png)
+                                   f))]
+                          [else (send-to-editor output-editor (sanitize result))]))
+         
+          (send b enable #t)
+          
+          )]))
+  
+  b)
 
 (require (only-in 2htdp/image image?))
 (define (sanitize r)
@@ -93,7 +104,8 @@
 
 
 
-#;(module+ test
+#;
+(module+ test
   (require (submod k2/lang/hero/basic ratchet))
 
   (launch vis-lang))
