@@ -53,12 +53,17 @@
                           (string-replace
                             (first (string-split s "\n"))
                             "#lang " "")))
-      
-      (define editor (dynamic-require `(submod ,lang-line ratchet) 'vis-lang)) 
 
-      (define launch (dynamic-require 'ratchet/launch 'launch))
+      (with-handlers ([exn:fail? (lambda (e)
+                                   (message-box "Unrecognized"
+                                                (~a "Make sure you put a ratchet compatable language in your #lang line.  And please make sure that language is installed on your computer.  Error: " e))
+                                   )])
 
-      (launch editor)
+
+                     (define editor (dynamic-require `(submod ,lang-line ratchet) 'vis-lang)) 
+                     (define launch (dynamic-require 'ratchet/launch 'launch))
+
+                     (launch editor))
       )
  
     (define (phase1) (void))
