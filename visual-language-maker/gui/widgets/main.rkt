@@ -44,8 +44,9 @@
         (thunk*
          (send b enable #f)
 
-         (with-handlers ([exn:fail? (thunk* 
-                                      (send b enable #t))])
+         (with-handlers ([exn:fail? (lambda (e)  
+                                      (send b enable #t)
+                                      (raise e))])
                         (define result
                           (send input-editor run-code))
                         (cond
