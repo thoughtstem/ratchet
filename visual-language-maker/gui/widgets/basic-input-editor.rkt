@@ -127,12 +127,10 @@
               (send this get-code)
               ")"))
 
-      ;  (displayln code)
-        
-        (eval
-         (read
-          (open-input-string code))
-         ns))))
+          (eval
+            (read
+              (open-input-string code))
+            ns))))
 
   visual-editor%)
 

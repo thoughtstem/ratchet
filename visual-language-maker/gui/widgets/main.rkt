@@ -3,6 +3,7 @@
 (provide launch)
 
 (require racket/gui framework pict
+         "../../../util.rkt"
          "../../base.rkt"
          "./basic-input-editor.rkt")
 
@@ -44,8 +45,9 @@
         (thunk*
          (send b enable #f)
 
-         (with-handlers ([exn:fail? (thunk* 
-                                      (send b enable #t))])
+         (with-handlers ([exn:fail? (lambda (e)  
+                                      (send b enable #t)
+                                      (raise e))])
                         (define result
                           (send input-editor run-code))
                         (cond
@@ -66,9 +68,18 @@
                                    (define bm (pict->bitmap (sanitize result)))
                                    (send bm save-file f 'png)
                                    f))]
-                          [else (send-to-editor output-editor (sanitize result))]))
+                          [else (send-to-editor output-editor (sanitize result))])
+
+                        (if (please-wait? result)
+                          (thread
+                            (thunk
+                              (sleep 20) 
+                              (send b enable #t)))
+
+                          (send b enable #t)))
          
-          (send b enable #t)
+
+          
           
           )]))
   
