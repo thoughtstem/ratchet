@@ -70,6 +70,7 @@
                                    f))]
                           [else (send-to-editor output-editor (sanitize result))])
 
+                        ;Hack...
                         (if (please-wait? result)
                           (thread
                             (thunk
