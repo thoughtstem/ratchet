@@ -74,11 +74,7 @@
   
   (define picts (map identifier-mapping-picture mappings))
 
-  ;DON"T HARD CODE THIS BIT>>>>
-  ;(dynamic-require 'k2/lang/ocean/fish #f)
-  (define ns
-    (visual-language-ns vis-lang)
-    #;(module->namespace 'k2/lang/ocean/fish))
+  (define ns (visual-language-ns vis-lang))
     
   (define visual-editor%
     (class racket:text%
@@ -130,7 +126,9 @@
           (eval
             (read
               (open-input-string code))
-            ns))))
+            ns)
+          
+          )))
 
   visual-editor%)
 

@@ -70,6 +70,15 @@
                                    f))]
                           [else (send-to-editor output-editor (sanitize result))])
 
+                        ;Hack...  But I think we don't need it anymore,
+                        ;since we allow game-engine games to run to completion before 
+                        ;the run button needs to be reenabled.  So it just waits until
+                        ;the game is finished before you can launch another one.
+                        ;Exactly what we want.
+                        ;I'll leave this here for now, in case we need to fall back
+                        ;to the hackier solution.
+                        
+                        #;
                         (if (please-wait? result)
                           (thread
                             (thunk
