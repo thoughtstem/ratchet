@@ -6,7 +6,7 @@
          (struct-out identifier-mapping))
 
 (struct visual-language (ns mappings wrapper) #:transparent )
-(struct identifier-mapping (main letter picture) #:transparent)
+(struct identifier-mapping (main letter picture original) #:transparent)
 
 (require pict)
 
@@ -28,7 +28,7 @@
          (define lang-id
            (visual-language ns
                             (list
-                              (identifier-mapping 'identifier 'l (scale-to-fit pict 20 20))
+                              (identifier-mapping 'identifier 'l (scale-to-fit pict 20 20) pict)
                               ...)
                             'begin ))
 )]
@@ -47,7 +47,7 @@
          (define lang-id
            (visual-language ns
                             (list
-                              (identifier-mapping 'identifier 'l (scale-to-fit pict 20 20))
+                              (identifier-mapping 'identifier 'l (scale-to-fit pict 20 20) pict)
                               ...)
                             'wrapper ))
 )]

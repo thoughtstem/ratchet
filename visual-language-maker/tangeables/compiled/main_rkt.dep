@@ -1,1 +1,0 @@
-("7.0" ("ca66f25b145928caac8be7ead7eb8092778294fe" . "53ab5ff53ce0e42ead932d277acf09a11ea299a2") (collects #"pict" #"main.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (collects #"ratchet" #"visual-language-maker" #"base.rkt"))

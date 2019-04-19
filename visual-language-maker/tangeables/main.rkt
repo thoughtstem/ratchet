@@ -5,8 +5,6 @@
 (require pict
          "../base.rkt")
 
-
-
 (define (tangeable-tiles lang)
   (define mappings (visual-language-mappings lang))
   
