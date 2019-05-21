@@ -18,7 +18,7 @@
   (define instruction-message
     (new message%
          [parent instruction-panel]
-         [label "Look at the icons on the left, type the characters inside the parentheses on the right."]
+         [label "Look at the icons on the left, type the matching characters on the right."]
          [min-width 250]
          [auto-resize #t]))
   
@@ -79,7 +79,7 @@
         is
         0 (* 20 mi))
 
-  (define string-snip (make-object string-snip% (~a "" (identifier-mapping-letter m) " --- " (identifier-mapping-main m))))
+  (define string-snip (make-object string-snip% (~a (identifier-mapping-letter m) "  ---> " (identifier-mapping-main m))))
   ;(define string-style (make-object style<%>))
   ;(define string-style-delta (make-object style-delta% 'change-family 'modern))
 
