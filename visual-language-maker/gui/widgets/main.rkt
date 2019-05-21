@@ -115,7 +115,7 @@
 
 
 
-(module+ test
+#;(module+ test
   (require (submod k2/lang/hero/basic ratchet))
 
   (launch vis-lang))
