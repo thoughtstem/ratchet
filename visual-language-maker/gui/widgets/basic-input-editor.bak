@@ -6,22 +6,11 @@
          "../../base.rkt")
 
 (define (basic-input-editor parent vis-lang)
-  (define instruction-panel (new horizontal-panel%
-                                 [parent parent]
-                                 [alignment '(center center)]
-                                 [stretchable-width #t]))
   (define top-panel (new horizontal-panel%
                          [parent parent]
                          [alignment '(center center)]
                          [stretchable-width #t]))
-  
-  (define instruction-message
-    (new message%
-         [parent instruction-panel]
-         [label "Look at the icons on the left, type the characters inside the parentheses on the right."]
-         [min-width 250]
-         [auto-resize #t]))
-  
+
   (define legend-canvas
     (new editor-canvas%
          [parent top-panel]
@@ -30,9 +19,6 @@
          [stretchable-width #t]))
   
   (define legend  (new pasteboard%))
-  ;(define string-style-delta (make-object style-delta%));-family 'modern))
-  ;(send string-style-delta set-family 'modern)
-  ;(send legend change-style string-style-delta)
   
   (send legend-canvas set-editor legend)
 
@@ -51,7 +37,7 @@
   (append-editor-operation-menu-items m-edit #f)
   (append-editor-font-menu-items m-font)
   (send the-editor set-max-undo-history 100)
-  
+
   (define input-canvas
     (new editor-canvas%
          [parent top-panel]
@@ -79,18 +65,9 @@
         is
         0 (* 20 mi))
 
-  (define string-snip (make-object string-snip% (~a "" (identifier-mapping-letter m) " --- " (identifier-mapping-main m))))
-  ;(define string-style (make-object style<%>))
-  ;(define string-style-delta (make-object style-delta% 'change-family 'modern))
-
-  ;(send string-style set-delta string-style-delta)
-  ;(send string-snip set-style string-style)
-  
   (send panel insert
-        string-snip
-        40 (* 20 mi))
-
-  )
+        (make-object string-snip% (~a "(" (identifier-mapping-letter m) ") " (identifier-mapping-main m)))
+        40 (* 20 mi)))
 
 
 (require pict/snip)
