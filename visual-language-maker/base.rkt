@@ -28,7 +28,12 @@
          (define lang-id
            (visual-language ns
                             (list
-                              (identifier-mapping 'identifier 'l (scale-to-fit pict 20 20) pict)
+                              (identifier-mapping 'identifier 'l
+                                                  
+                                                  (cc-superimpose (scale-to-fit pict 20 20)
+                                                                  (rectangle 20 20 #:border-width 2))
+
+                                                  pict)
                               ...)
                             'begin ))
 )]
@@ -47,7 +52,12 @@
          (define lang-id
            (visual-language ns
                             (list
-                              (identifier-mapping 'identifier 'l (scale-to-fit pict 20 20) pict)
+                              (identifier-mapping 'identifier 'l
+
+                                                  (cc-superimpose (scale-to-fit pict 20 20)
+                                                                  (rectangle 20 20 #:border-width 2))
+
+                                                  pict)
                               ...)
                             'wrapper ))
 )]
