@@ -30,8 +30,12 @@
                             (list
                               (identifier-mapping 'identifier 'l
                                                   
-                                                  (cc-superimpose (scale-to-fit pict 20 20)
-                                                                  (rectangle 20 20 #:border-width 2))
+                                                  (cc-superimpose (filled-rectangle 20 20 #:color "LightGray")
+                                                                  (scale-to-fit pict 18 18)
+                                                                  ;using freeze to crop excess border
+                                                                  (freeze (frame #:color "white" #:line-width 2
+                                                                                 (rounded-rectangle 20 20 -0.25 #:border-width 3 #:border-color "white")))
+                                                                  (rounded-rectangle 18 18 -0.25 #:border-color "DimGray"))
 
                                                   pict)
                               ...)
@@ -54,8 +58,12 @@
                             (list
                               (identifier-mapping 'identifier 'l
 
-                                                  (cc-superimpose (scale-to-fit pict 20 20)
-                                                                  (rectangle 20 20 #:border-width 2))
+                                                  (cc-superimpose (filled-rectangle 20 20 #:color "LightGray")
+                                                                  (scale-to-fit pict 18 18)
+                                                                  ;using freeze to crop excess border
+                                                                  (freeze (frame #:color "white" #:line-width 2
+                                                                                 (rounded-rectangle 20 20 -0.25 #:border-width 3 #:border-color "white")))
+                                                                  (rounded-rectangle 18 18 -0.25 #:border-color "DimGray"))
 
                                                   pict)
                               ...)
