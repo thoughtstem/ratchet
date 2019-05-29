@@ -26,9 +26,10 @@
   (define legend-canvas
     (new editor-canvas%
          [parent top-panel]
-         [min-width 250]
+         [min-width 320]
          [min-height 400]
-         [stretchable-width #t]))
+         [stretchable-width #f]
+         ))
   
   (define legend  (new pasteboard%))
   (send legend-canvas set-editor legend)
@@ -44,15 +45,15 @@
   (define the-editor (new (visual-language-editor vis-lang)))
   (define mb (new menu-bar% [parent parent]))
   (define m-edit (new menu% [label "Edit"] [parent mb]))
-  (define m-font (new menu% [label "Font"] [parent mb]))
+  ;(define m-font (new menu% [label "Font"] [parent mb]))
   (append-editor-operation-menu-items m-edit #f)
-  (append-editor-font-menu-items m-font)
+  ;(append-editor-font-menu-items m-font)
   (send the-editor set-max-undo-history 100)
   
   (define input-canvas
     (new editor-canvas%
          [parent top-panel]
-         [min-width 250]
+         [min-width 320]
          [min-height 400]
          [stretchable-width #t]))
   
@@ -76,7 +77,7 @@
         is
         0 (* 24 mi))
 
-  (define string-snip (make-object string-snip% (~a (identifier-mapping-letter m) "  ---> " (identifier-mapping-main m))))
+  (define string-snip (make-object string-snip% (~a (identifier-mapping-letter m) " --> " (identifier-mapping-main m))))
   (define style-delta (make-object style-delta% 'change-size 12))
 
   ; Setting a monospace font and family that works on both linux and windows
