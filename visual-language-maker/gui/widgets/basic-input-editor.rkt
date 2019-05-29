@@ -9,7 +9,8 @@
   (define instruction-panel (new horizontal-panel%
                                  [parent parent]
                                  [alignment '(center center)]
-                                 [stretchable-width #t]))
+                                 [stretchable-width #t]
+                                 [stretchable-height #f]))
   (define top-panel (new horizontal-panel%
                          [parent parent]
                          [alignment '(center center)]
@@ -33,7 +34,19 @@
   ;(define string-style-delta (make-object style-delta%));-family 'modern))
   ;(send string-style-delta set-family 'modern)
   ;(send legend change-style string-style-delta)
+
+  ;(define string-style-delta (make-object style-delta% 'change-family 'modern))
+  (define string-style-delta (make-object style-delta% 'change-italic))
+  ;(send string-style-delta set-face "DejaVu Sans Mono")
+
   
+  (define legend-style-list (send legend get-style-list))
+  (define legend-basic-style (send legend-style-list basic-style))
+
+  ;(send legend-basic-style set-weight 'bold)
+
+  ;(send legend-basic-style set-base-style string-style-delta)
+  ;(send legend set-style-list legend-style-list)
   (send legend-canvas set-editor legend)
 
   (define mappings (visual-language-mappings vis-lang))
@@ -73,22 +86,17 @@
 
   (define is (new image-snip%))
   (send is set-bitmap
-        (pict->bitmap (scale-to-fit (identifier-mapping-picture m) 20 20)))
+        (pict->bitmap (scale-to-fit (identifier-mapping-picture m) 24 24)))
   
   (send panel insert
         is
-        0 (* 20 mi))
+        0 (* 24 mi))
 
   (define string-snip (make-object string-snip% (~a (identifier-mapping-letter m) "  ---> " (identifier-mapping-main m))))
-  ;(define string-style (make-object style<%>))
-  ;(define string-style-delta (make-object style-delta% 'change-family 'modern))
 
-  ;(send string-style set-delta string-style-delta)
-  ;(send string-snip set-style string-style)
-  
   (send panel insert
         string-snip
-        40 (* 20 mi))
+        40 (* 24 mi))
 
   )
 
