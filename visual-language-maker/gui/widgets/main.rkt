@@ -30,7 +30,9 @@
   (define output-editor% racket:text%)
 
   (define output-editor (new output-editor%))
-  (define output-canvas (new editor-canvas% [parent parent]))
+  (define output-canvas (new editor-canvas% [parent parent]
+                                            [min-height 64]
+                                            [stretchable-height #f]))
   
   (send output-canvas set-editor output-editor)
   output-editor)

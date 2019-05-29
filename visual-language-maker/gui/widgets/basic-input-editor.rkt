@@ -31,22 +31,6 @@
          [stretchable-width #t]))
   
   (define legend  (new pasteboard%))
-  ;(define string-style-delta (make-object style-delta%));-family 'modern))
-  ;(send string-style-delta set-family 'modern)
-  ;(send legend change-style string-style-delta)
-
-  ;(define string-style-delta (make-object style-delta% 'change-family 'modern))
-  (define string-style-delta (make-object style-delta% 'change-italic))
-  ;(send string-style-delta set-face "DejaVu Sans Mono")
-
-  
-  (define legend-style-list (send legend get-style-list))
-  (define legend-basic-style (send legend-style-list basic-style))
-
-  ;(send legend-basic-style set-weight 'bold)
-
-  ;(send legend-basic-style set-base-style string-style-delta)
-  ;(send legend set-style-list legend-style-list)
   (send legend-canvas set-editor legend)
 
   (define mappings (visual-language-mappings vis-lang))
@@ -93,10 +77,21 @@
         0 (* 24 mi))
 
   (define string-snip (make-object string-snip% (~a (identifier-mapping-letter m) "  ---> " (identifier-mapping-main m))))
+  (define style-delta (make-object style-delta% 'change-size 12))
 
+  ; Setting a monospace font and family that works on both linux and windows
+  (send style-delta set-delta-face "DejaVu Sans Mono" 'modern)
+
+  ; === INSERT THE SNIP ===
   (send panel insert
         string-snip
-        40 (* 24 mi))
+        40 (+ 3 (* 24 mi)))
+
+  ; === SELECT THE SNIP ===
+  (send panel set-selected string-snip)
+  
+  ; === CHANGE THE STYLE OF SELECTED SNIP ===
+  (send panel change-style style-delta)
 
   )
 
