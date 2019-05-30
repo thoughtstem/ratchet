@@ -58,6 +58,7 @@
          [stretchable-width #t]))
   
   (send input-canvas set-editor the-editor)
+  (send parent maximize #t)
 
   the-editor)
 
