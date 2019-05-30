@@ -33,11 +33,11 @@
 
                                                   (inset/clip
                                                    (cc-superimpose
-                                                    (filled-rounded-rectangle 28 28 -0.25
+                                                    (filled-rounded-rectangle 30 30 -0.25
                                                                               #:color (make-color 240 240 240)
                                                                               #:border-color "DimGray"
                                                                               #:border-width 2)
-                                                    (scale-to-fit pict 20 20)
+                                                    (scale-to-fit pict 22 22)
                                                     ) 2)
                                                   
                                                   ;(cc-superimpose (filled-rectangle 32 32 #:color (make-color 240 240 240))
@@ -70,11 +70,11 @@
 
                                                   (inset/clip
                                                    (cc-superimpose
-                                                    (filled-rounded-rectangle 28 28 -0.25
+                                                    (filled-rounded-rectangle 30 30 -0.25
                                                                               #:color (make-color 240 240 240)
                                                                               #:border-color "DimGray"
                                                                               #:border-width 2)
-                                                    (scale-to-fit pict 20 20)
+                                                    (scale-to-fit pict 22 22)
                                                     ) 2)
                                                   
                                                   ;(cc-superimpose (filled-rectangle 32 32 #:color (make-color 240 240 240))

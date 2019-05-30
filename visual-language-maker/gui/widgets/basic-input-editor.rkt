@@ -58,6 +58,8 @@
          [stretchable-width #t]))
   
   (send input-canvas set-editor the-editor)
+  
+  
   (send parent maximize #t)
 
   the-editor)
@@ -82,7 +84,11 @@
   (define style-delta (make-object style-delta% 'change-size 12))
 
   ; Setting a monospace font and family that works on both linux and windows
-  (send style-delta set-delta-face "DejaVu Sans Mono" 'modern)
+  ; Update: Windows does not come with DejaVu, switching to Courier
+  (define os (system-type 'os))
+  (cond [(eq? os 'windows) (send style-delta set-delta-face "Consolas" 'modern)]
+        [(eq? os 'macosx)  (send style-delta set-delta-face "Menlo" 'modern)]
+        [(eq? os 'unix)    (send style-delta set-delta-face "DejaVu Sans Mono" 'modern)])
 
   ; === INSERT THE SNIP ===
   (send panel insert
@@ -109,6 +115,8 @@
   (define visual-editor%
     (class racket:text%
       (super-new)
+
+      (editor:set-current-preferred-font-size 30)
             
       (define/override (on-char ke)
         (define ke-l (~a (send ke get-key-code)))
@@ -119,6 +127,7 @@
                              ke-l))
                  mappings))
 
+        
         (if mapping
             (send this insert
                   (new pict-snip%
