@@ -10,7 +10,8 @@
 (struct visual-language (ns mappings wrapper) #:transparent )
 (struct identifier-mapping (main letter picture original) #:transparent)
 
-(require pict)
+(require pict
+         racket/draw)
 
 ;Gross duplication...  Consolodate before adding more cruft...
 (define-syntax (define-visual-language stx)
@@ -30,7 +31,25 @@
          (define lang-id
            (visual-language ns
                             (list
-                              (identifier-mapping 'identifier 'l (scale-to-fit pict 20 20) pict)
+                              (identifier-mapping 'identifier 'l
+
+                                                  (inset/clip
+                                                   (cc-superimpose
+                                                    (filled-rounded-rectangle 30 30 -0.25
+                                                                              #:color (make-color 240 240 240)
+                                                                              #:border-color "DimGray"
+                                                                              #:border-width 2)
+                                                    (scale-to-fit pict 22 22)
+                                                    ) 2)
+                                                  
+                                                  ;(cc-superimpose (filled-rectangle 32 32 #:color (make-color 240 240 240))
+                                                  ;                (scale-to-fit pict 20 20)
+                                                  ;                ;using freeze to crop excess border
+                                                  ;                (freeze (frame #:color "white" #:line-width 2
+                                                  ;                               (rounded-rectangle 32 32 -0.25 #:border-width 4 #:border-color "white")))
+                                                  ;                (rounded-rectangle 28 28 -0.25 #:border-color "DimGray" #:border-width 2))
+
+                                                  pict)
                               ...)
                             'begin ))
 )]
@@ -49,7 +68,25 @@
          (define lang-id
            (visual-language ns
                             (list
-                              (identifier-mapping 'identifier 'l (scale-to-fit pict 20 20) pict)
+                              (identifier-mapping 'identifier 'l
+
+                                                  (inset/clip
+                                                   (cc-superimpose
+                                                    (filled-rounded-rectangle 30 30 -0.25
+                                                                              #:color (make-color 240 240 240)
+                                                                              #:border-color "DimGray"
+                                                                              #:border-width 2)
+                                                    (scale-to-fit pict 22 22)
+                                                    ) 2)
+                                                  
+                                                  ;(cc-superimpose (filled-rectangle 32 32 #:color (make-color 240 240 240))
+                                                  ;                (scale-to-fit pict 20 20)
+                                                  ;                ;using freeze to crop excess border
+                                                  ;                (freeze (frame #:color "white" #:line-width 2
+                                                  ;                               (rounded-rectangle 32 32 -0.25 #:border-width 4 #:border-color "white")))
+                                                  ;                (rounded-rectangle 28 28 -0.25 #:border-color "DimGray" #:border-width 2))
+
+                                                  pict)
                               ...)
                             'wrapper ))
 )]

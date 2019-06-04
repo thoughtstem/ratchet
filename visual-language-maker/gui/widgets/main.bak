@@ -21,9 +21,9 @@
 
 (define (basic-frame)
   (new frame%
-       [label "Ratchet GUI"]
-       [width 600]
-       [height 600]))
+       [label "Simple Edit"]
+       [width 500]
+       [height 500]))
 
 
 (define (basic-output-editor parent)
@@ -31,28 +31,17 @@
 
   (define output-editor (new output-editor%))
   (define output-canvas (new editor-canvas% [parent parent]
-                                            [min-height 64]
-                                            [stretchable-height #f]))
-  
+                                            [min-height 100]))
   (send output-canvas set-editor output-editor)
+
   output-editor)
 
 
 (define (run-code-button parent input-editor output-editor)
-  (define (color-bg-with-text text)
-    [define bm (make-object bitmap% 100 40)]
-    [define dc (make-object bitmap-dc% bm)]
-    (send dc set-brush (make-object brush% (make-color 120 220 82) 'solid))
-    (send dc draw-rectangle 0 0 100 40)
-    (send dc draw-text text 35 10)
-    bm)
-  
   (define b
     (new button%
        [parent parent]
-       [label (color-bg-with-text "RUN")]
-       [min-width 100]	 
-       [min-height 40]
+       [label "RUN"]
        [callback
         (thunk*
          (send b enable #f)
@@ -117,7 +106,7 @@
 
 
 
-#;(module+ test
+(module+ test
   (require (submod k2/lang/hero/basic ratchet))
 
   (launch vis-lang))
