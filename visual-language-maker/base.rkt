@@ -5,6 +5,8 @@
          (struct-out visual-language)
          (struct-out identifier-mapping))
 
+(require "../util.rkt")
+
 (struct visual-language (ns mappings wrapper) #:transparent )
 (struct identifier-mapping (main letter picture original) #:transparent)
 
