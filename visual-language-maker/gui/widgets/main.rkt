@@ -18,9 +18,15 @@
   
   (send f show #t))
 
+(define ratchet-frame%
+  (class frame%
+    (super-new)
+    (define (on-close)
+      (editor:set-current-preferred-font-size 12))
+    (augment on-close)))
 
 (define (basic-frame)
-  (new frame%
+  (new ratchet-frame%
        [label "Ratchet GUI"]
        [width 600]
        [height 600]))
@@ -118,7 +124,7 @@
 
 
 #;(module+ test
-  (require (submod k2/lang/hero/basic ratchet))
+  (require (submod k2/lang/hero/powers ratchet))
 
   (launch vis-lang))
 
