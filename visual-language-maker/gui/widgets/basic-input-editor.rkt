@@ -80,7 +80,7 @@
         is
         0 (* 24 mi))
 
-  (define string-snip (make-object string-snip% (~a (identifier-mapping-letter m) " 🡒 " (identifier-mapping-main m))))
+  (define string-snip (make-object string-snip% (~a (identifier-mapping-letter m) " ⟶ " (identifier-mapping-main m))))
   (define style-delta (make-object style-delta% 'change-size 12))
 
   ; Setting a monospace font and family that works on both linux and windows
