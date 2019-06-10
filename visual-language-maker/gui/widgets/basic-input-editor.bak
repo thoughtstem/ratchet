@@ -6,32 +6,20 @@
          "../../base.rkt")
 
 (define (basic-input-editor parent vis-lang)
-  (define instruction-panel (new horizontal-panel%
-                                 [parent parent]
-                                 [alignment '(center center)]
-                                 [stretchable-width #t]
-                                 [stretchable-height #f]))
   (define top-panel (new horizontal-panel%
                          [parent parent]
                          [alignment '(center center)]
                          [stretchable-width #t]))
-  
-  (define instruction-message
-    (new message%
-         [parent instruction-panel]
-         [label "Look at the icons on the left, type the matching characters on the right."]
-         [min-width 250]
-         [auto-resize #t]))
-  
+
   (define legend-canvas
     (new editor-canvas%
          [parent top-panel]
-         [min-width 320]
+         [min-width 250]
          [min-height 400]
-         [stretchable-width #f]
-         ))
+         [stretchable-width #t]))
   
   (define legend  (new pasteboard%))
+  
   (send legend-canvas set-editor legend)
 
   (define mappings (visual-language-mappings vis-lang))
@@ -45,22 +33,19 @@
   (define the-editor (new (visual-language-editor vis-lang)))
   (define mb (new menu-bar% [parent parent]))
   (define m-edit (new menu% [label "Edit"] [parent mb]))
-  ;(define m-font (new menu% [label "Font"] [parent mb]))
+  (define m-font (new menu% [label "Font"] [parent mb]))
   (append-editor-operation-menu-items m-edit #f)
-  ;(append-editor-font-menu-items m-font)
+  (append-editor-font-menu-items m-font)
   (send the-editor set-max-undo-history 100)
-  
+
   (define input-canvas
     (new editor-canvas%
          [parent top-panel]
-         [min-width 320]
+         [min-width 250]
          [min-height 400]
          [stretchable-width #t]))
   
   (send input-canvas set-editor the-editor)
-  
-  
-  (send parent maximize #t)
 
   the-editor)
 
@@ -74,34 +59,15 @@
 
   (define is (new image-snip%))
   (send is set-bitmap
-        (pict->bitmap (scale-to-fit (identifier-mapping-picture m) 24 24)))
+        (pict->bitmap (scale-to-fit (identifier-mapping-picture m) 20 20)))
   
   (send panel insert
         is
-        0 (* 24 mi))
+        0 (* 20 mi))
 
-  (define string-snip (make-object string-snip% (~a (identifier-mapping-letter m) " ⟶ " (identifier-mapping-main m))))
-  (define style-delta (make-object style-delta% 'change-size 12))
-
-  ; Setting a monospace font and family that works on both linux and windows
-  ; Update: Windows does not come with DejaVu, switching to Courier
-  (define os (system-type 'os))
-  (cond [(eq? os 'windows) (send style-delta set-delta-face "Consolas" 'modern)]
-        [(eq? os 'macosx)  (send style-delta set-delta-face "Menlo" 'modern)]
-        [(eq? os 'unix)    (send style-delta set-delta-face "DejaVu Sans Mono" 'modern)])
-
-  ; === INSERT THE SNIP ===
   (send panel insert
-        string-snip
-        40 (+ 3 (* 24 mi)))
-
-  ; === SELECT THE SNIP ===
-  (send panel set-selected string-snip)
-  
-  ; === CHANGE THE STYLE OF SELECTED SNIP ===
-  (send panel change-style style-delta)
-
-  )
+        (make-object string-snip% (~a "(" (identifier-mapping-letter m) ") " (identifier-mapping-main m)))
+        40 (* 20 mi)))
 
 
 (require pict/snip)
@@ -115,8 +81,6 @@
   (define visual-editor%
     (class racket:text%
       (super-new)
-
-      (editor:set-current-preferred-font-size 30)
             
       (define/override (on-char ke)
         (define ke-l (~a (send ke get-key-code)))
@@ -127,7 +91,6 @@
                              ke-l))
                  mappings))
 
-        
         (if mapping
             (send this insert
                   (new pict-snip%
