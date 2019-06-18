@@ -8,9 +8,9 @@
   (and (string? x)
        (string=? x "Please wait....")))
 
-(define-syntax-rule (launch-for-ratchet exp)
+(define-syntax-rule (launch-for-ratchet exp ...)
   (begin
-    exp
+    exp ...
     "Game complete")
 
   #;
