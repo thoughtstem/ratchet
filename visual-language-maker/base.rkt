@@ -1,5 +1,9 @@
 #lang racket
 
+
+
+
+
 ;Basically provides a
 (provide define-visual-language
          (struct-out visual-language)
@@ -14,6 +18,36 @@
 ;Gross duplication...  Consolodate before adding more cruft...
 (define-syntax (define-visual-language stx)
   (syntax-case stx ()
+    ;This is the one that is documented.  The other cases are deprecated
+    [(define-visual-language #:wrapper wrapper [identifier l pict] ...)
+     #'(begin
+         (provide (all-from-out ratchet)
+                  (rename-out [lang-id vis-lang])
+                  identifier ...)
+
+	 (define-namespace-anchor a)
+	 (define ns (namespace-anchor->namespace a))
+
+         (define lang-id
+           (visual-language ns
+                            (list
+                              (identifier-mapping 'identifier 'l
+
+                                                  (inset/clip
+                                                   (cc-superimpose
+                                                    (filled-rounded-rectangle 30 30 -0.25
+                                                                              #:color (make-color 240 240 240)
+                                                                              #:border-color "DimGray"
+                                                                              #:border-width 2)
+                                                    (scale-to-fit pict 22 22)
+                                                    ) 2)
+                                                  pict)
+                              ...)
+                            'wrapper ))
+)]
+     
+
+    ;Old but here for backwards compatibility.  Can remove if we track down all uses of it. 
     [(define-visual-language lang-id module-path [identifier l pict] ...)
      #'(begin
          (provide (all-from-out ratchet)
@@ -51,6 +85,8 @@
                               ...)
                             'begin ))
 )]
+
+    ;Old but here for backwards compatibility
     [(define-visual-language #:wrapper wrapper lang-id module-path [identifier l pict] ...)
      #'(begin
          (provide (all-from-out ratchet)
