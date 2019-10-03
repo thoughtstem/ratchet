@@ -1,6 +1,8 @@
 #lang racket
 
-(provide launch-for-ratchet please-wait?)
+(provide launch-for-ratchet please-wait?
+         (rename-out 
+           [launch-for-ratchet launch-game-engine]))
 
 ;Kids keep pressing the Run button a billion times.  This lets us return a message that says to wait -- and also communicates with the Run button to disable itself for 20 seconds.
 ;It's a hack, but it does work
