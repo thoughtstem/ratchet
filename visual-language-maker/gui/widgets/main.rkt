@@ -124,7 +124,7 @@
 
 
 #;(module+ test
-  (require (submod k2/lang/hero/powers ratchet))
+  (require (submod clicker-cartoon-collect ratchet))
 
   (launch vis-lang))
 
