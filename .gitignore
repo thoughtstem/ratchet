@@ -1,2 +1,7 @@
 compiled
 compiled/*
+*.dep
+*.zo
+*.rktd
+*.DS_Store
+/doc/
